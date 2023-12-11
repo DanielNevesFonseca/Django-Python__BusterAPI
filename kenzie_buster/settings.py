@@ -1,3 +1,4 @@
+from datetime import timedelta
 """
 Django settings for kenzie_buster project.
 
@@ -48,7 +49,9 @@ THIRD_PARTY_APPS = [
 
 # CHANGE: CREATED APP USING DJANGO
 MY_APPS = [
-    'users'
+    'users',
+    'movies',
+    'movies_orders'
 ]
 
 # CHANGE:  join all app to django to recognize
@@ -140,3 +143,10 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # CHANGE: ADD AUTH USER MODEL TO MODIFY USER DEFAULT IN DJANGO CONTEXT
 AUTH_USER_MODEL = 'users.User'
+
+
+# CHANGE: ADD CUSTOMIZED SETTING TO JWT TOKEN
+SIMPLE_JWT = {
+    "ACCESS_TOKEN_LIFETIME": timedelta(days=1),
+    "REFRESH_TOKEN_LIFETIME": timedelta(days=7),
+}
