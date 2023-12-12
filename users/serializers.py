@@ -39,6 +39,15 @@ class UserSerializer(serializers.Serializer):
             )
         return user
 
+    def update(self, instance: User, validated_data):
+        for key, value in validated_data.items():
+            if key == "password" and value:
+                instance.set_password(value)
+            else:
+                setattr(instance, key, value)
+        instance.save()
+        return instance
+
 
 class LoginSerializer(serializers.Serializer):
     username = serializers.CharField(max_length=150)
