@@ -5,7 +5,8 @@ from users.models import User
 
 
 class IsUserOwner(BasePermission):
-    def has_object_permission(self, request: Request, view: APIView, obj: User):
+    def has_object_permission(
+            self, request: Request, view: APIView, obj: User):
         return request.user.is_authenticated and (
             obj == request.user or request.user.is_superuser)
 

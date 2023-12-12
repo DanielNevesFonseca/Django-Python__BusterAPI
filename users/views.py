@@ -36,7 +36,8 @@ class UserDetailView(APIView):
     def patch(self, request: Request, user_id: int) -> Response:
         found_user = get_object_or_404(User.objects.filter(id=user_id))
         self.check_object_permissions(request, found_user)
-        serializer = UserSerializer(found_user, data=request.data, partial=True)
+        serializer = UserSerializer(
+            found_user, data=request.data, partial=True)
         serializer.is_valid(raise_exception=True)
         serializer.save()
         serializer = UserSerializer(found_user)
