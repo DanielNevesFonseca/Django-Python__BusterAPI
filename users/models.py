@@ -9,3 +9,6 @@ class User(AbstractUser):
         default=False,
         help_text=("Designates whether the user is an employee."),
     )
+    first_name = models.CharField(max_length=50, blank=True)
+    last_name = models.CharField(max_length=50, blank=True)
+    email = models.EmailField(blank=True, max_length=127, unique=True)
